@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Menu">
+   <Text layoutX="275.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Меню">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Text>
+   <Button layoutX="168.0" layoutY="124.0" mnemonicParsing="false" onAction="#allQuotes" text="все записи"/>
+   <Button layoutX="275.0" layoutY="124.0" mnemonicParsing="false" onAction="#myQuotes" text="мои записи"/>
+   <Button layoutX="212.0" layoutY="176.0" mnemonicParsing="false" onAction="#profile" text="профиль"/>
+   <Button layoutX="355.0" layoutY="176.0" mnemonicParsing="false" onAction="#authorize" text="авторизация"/>
+   <Button layoutX="380.0" layoutY="124.0" mnemonicParsing="false" onAction="#makeQuote" text="создать запись"/>
+</AnchorPane>
