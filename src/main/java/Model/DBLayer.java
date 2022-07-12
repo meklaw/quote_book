@@ -108,6 +108,19 @@ public class DBLayer implements ModelLayer {
         }
         return -1;
     }
+
+    @Override
+    public ResultSet getAllQuotes() {
+        String selectSql = "SELECT цитата, преподаватель, предмет, дата FROM цитата";
+        try {
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            ResultSet rs = selectPreparedStatement.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public int getAuthor(int id) {
         String selectSql = "SELECT автор FROM цитата WHERE id = ?";
