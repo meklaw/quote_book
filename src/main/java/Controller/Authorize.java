@@ -16,12 +16,14 @@ public class Authorize {
     public void signIn() {
         String name = loginField.getText();
         String password = passwordField.getText();
-        try (ModelLayer model = new DBLayer()) {
+        ModelLayer model = new DBLayer();
+        try {
             int id = model.authorizePerson(name, password);
             if (id == -1)
                 return;
             model.updateUser(id);
-            menu();
+
+            Main.changeScene("/View/menu.fxml");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

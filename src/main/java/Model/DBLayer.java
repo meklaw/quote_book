@@ -24,14 +24,6 @@ public class DBLayer implements ModelLayer {
         }
     }
 
-    @Override
-    public void close() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public void registerPerson(String login, String password, int group) {
@@ -49,9 +41,10 @@ public class DBLayer implements ModelLayer {
 
     @Override
     public int authorizePerson(String name, String password) {
+        Connection con = createConnection();
         String selectSql = "SELECT * FROM пользователь WHERE логин = ? AND хэш_пароля = ?";
         try {
-            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            PreparedStatement selectPreparedStatement = con.prepareStatement(selectSql);
             selectPreparedStatement.setString(1, name);
             selectPreparedStatement.setString(2, String.valueOf(password.hashCode()));
             ResultSet rs = selectPreparedStatement.executeQuery();
