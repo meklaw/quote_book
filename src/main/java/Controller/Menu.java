@@ -22,17 +22,16 @@ public class Menu {
     }
 
     @FXML
-    public void myQuotes() {
-        if (User.accessLevel == 0)
-            return;
-        Main.changeScene("/View/myQuotes.fxml");
-    }
-
-    @FXML
     public void makeQuote() {
         if (User.accessLevel == 0)
             return;
         Main.changeScene("/View/makeQuote.fxml");
+    }
+    @FXML
+    public void changeQuote() {
+        if (User.accessLevel == 0)
+            return;
+        Main.changeScene("/View/changeQuote.fxml");
     }
 
 }
