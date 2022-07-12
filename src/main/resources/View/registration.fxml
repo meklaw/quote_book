@@ -8,18 +8,17 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Registration">
-   <children>
-      <Text layoutX="74.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="login" layoutX="51.0" layoutY="154.0" promptText="логин" />
-      <TextField fx:id="group" layoutX="51.0" layoutY="290.0" promptText="номер группы" />
-      <PasswordField fx:id="password" layoutX="51.0" layoutY="221.0" promptText="пароль" />
-      <Button layoutX="370.0" layoutY="154.0" mnemonicParsing="false" onAction="#registration" text="Зарегистрироваться" />
-      <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#authorize" text="Авторизация" />
-      <Button layoutX="409.0" layoutY="290.0" mnemonicParsing="false" onAction="#menu" text="Меню" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Registration">
+   <Text layoutX="74.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Text>
+   <TextField fx:id="login" layoutX="51.0" layoutY="154.0" promptText="логин"/>
+   <TextField fx:id="group" layoutX="51.0" layoutY="290.0" promptText="номер группы"/>
+   <PasswordField fx:id="password" layoutX="51.0" layoutY="221.0" promptText="пароль"/>
+   <Button layoutX="370.0" layoutY="154.0" mnemonicParsing="false" onAction="#registration" text="Зарегистрироваться"/>
+   <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#authorize" text="Авторизация"/>
+   <Button layoutX="409.0" layoutY="290.0" mnemonicParsing="false" onAction="#menu" text="Меню"/>
 </AnchorPane>
