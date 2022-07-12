@@ -74,4 +74,21 @@ public class DBLayer implements ModelLayer {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void createQuote(String quote, String teach, String subj, String date) {
+        String sql = "INSERT INTO цитата (автор, цитата, преподаватель, предмет, дата) " +
+                "VALUES (?, ?, ?, ?, str_to_date(?, '%d/%m/%Y'))";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(1, User.id);
+            updatePreparedStatement.setString(2, quote);
+            updatePreparedStatement.setString(3, teach);
+            updatePreparedStatement.setString(4, subj);
+            updatePreparedStatement.setString(4, date);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

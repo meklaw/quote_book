@@ -7,5 +7,7 @@ public interface ModelLayer{
     int authorizePerson(String login, String password);
     void updateUser(int personID);
 
+    void createQuote(String quote, String teach, String subj, String date);
+
 
 }
