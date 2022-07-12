@@ -114,8 +114,7 @@ public class DBLayer implements ModelLayer {
         String selectSql = "SELECT цитата, преподаватель, предмет, дата FROM цитата";
         try {
             PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
-            ResultSet rs = selectPreparedStatement.executeQuery();
-            return rs;
+            return selectPreparedStatement.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -184,6 +183,45 @@ public class DBLayer implements ModelLayer {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
             updatePreparedStatement.setInt(2, User.id);
             updatePreparedStatement.setString(1, date);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeUserLogin(int id, String newLogin) {
+        String sql = "UPDATE пользователь SET логин = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, newLogin);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeUserPassword(int id, String newPassword) {
+        String sql = "UPDATE пользователь SET хэш_пароля = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, String.valueOf(newPassword.hashCode()));
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeUserGroup(int id, int newGroup) {
+        String sql = "UPDATE пользователь SET номер_группы = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(1, newGroup);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

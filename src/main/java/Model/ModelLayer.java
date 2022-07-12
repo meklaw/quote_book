@@ -17,6 +17,9 @@ public interface ModelLayer{
     void changeTeacher(int id, String teacher);
     void changeSubject(int id, String subject);
     void changeDate(int id, String date);
+    void changeUserLogin(int id, String newLogin);
+    void changeUserPassword(int id, String newPassword);
+    void changeUserGroup(int id, int newGroup);
 
 
 }
