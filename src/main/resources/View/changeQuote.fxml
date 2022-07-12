@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ChangeQuote">
+
+    <Button layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#menu" text="menu" />
+    <Button layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#change" text="изменить" />
+    <TextField fx:id="quot" layoutX="62.0" layoutY="165.0" promptText="Цитата" />
+    <TextField fx:id="subject" layoutX="62.0" layoutY="262.0" promptText="Предмет" />
+    <TextField fx:id="teacher" layoutX="62.0" layoutY="211.0" promptText="Преподаватель" />
+    <TextField fx:id="day" layoutX="272.0" layoutY="165.0" promptText="день" />
+    <TextField fx:id="month" layoutX="272.0" layoutY="211.0" promptText="месяц" />
+    <TextField fx:id="year" layoutX="272.0" layoutY="262.0" promptText="год" />
+   <TextField fx:id="id" layoutX="166.0" layoutY="117.0" promptText="id записи" />
+</AnchorPane>

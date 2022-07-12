@@ -91,4 +91,89 @@ public class DBLayer implements ModelLayer {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public int getGroup(int id) {
+        String selectSql = "SELECT номер_группы FROM пользователь WHERE id = ?";
+
+        try {
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            selectPreparedStatement.setInt(1, id);
+            ResultSet rs = selectPreparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("номер_группы");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
+    @Override
+    public int getAuthor(int id) {
+        String selectSql = "SELECT автор FROM цитата WHERE id = ?";
+
+        try {
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            selectPreparedStatement.setInt(1, id);
+            ResultSet rs = selectPreparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("автор");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
+
+    @Override
+    public void changeQuote(int id, String quote) {
+        String sql = "UPDATE цитата SET цитата = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, quote);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeTeacher(int id, String teacher) {
+        String sql = "UPDATE цитата SET преподаватель = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, teacher);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeSubject(int id, String subject) {
+        String sql = "UPDATE цитата SET предмет = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, subject);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeDate(int id, String date) {
+        String sql = "UPDATE цитата SET дата = ? WHERE id = ?;";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setString(1, date);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
