@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.DBLayer;
 import Model.ModelLayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -16,7 +15,7 @@ public class Authorize {
     public void signIn() {
         String name = loginField.getText();
         String password = passwordField.getText();
-        ModelLayer model = new DBLayer();
+        ModelLayer model = Main.getModel();
         try {
             int id = model.authorizePerson(name, password);
             if (id == -1)

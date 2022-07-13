@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.DBLayer;
 import Model.ModelLayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,30 +13,48 @@ import java.sql.SQLException;
 public class AllQuotes {
 
     @FXML
-    private TableView<Obj> table;
+    private TableView<Quote> table;
 
     @FXML
-    private TableColumn<Obj,String> quote;
+    private TableColumn<Quote,String> quote;
 
     @FXML
-    private TableColumn<Obj,String> teacher;
+    private TableColumn<Quote,String> teacher;
 
     @FXML
-    private TableColumn<Obj,String> subject;
+    private TableColumn<Quote,String> subject;
 
     @FXML
-    private TableColumn<Obj,String> date;
+    private TableColumn<Quote,String> date;
 
     @FXML
     public void allQuotes() throws SQLException {
-        ModelLayer model = new DBLayer();
+        ModelLayer model = Main.getModel();
         ResultSet set = model.getAllQuotes();
+        table.getItems().clear();
         while (set.next()) {
             String quote = set.getString("цитата");
             String teacher = set.getString("преподаватель");
             String subject = set.getString("предмет");
             Date date = set.getDate("дата");
-            table.getItems().addAll(new Obj(quote, teacher, subject, date));
+            table.getItems().addAll(new Quote(quote, teacher, subject, date));
+        }
+        quote.setCellValueFactory(new PropertyValueFactory<>("quote"));
+        teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    }
+    @FXML
+    public void myQuotes() throws SQLException {
+        ModelLayer model = Main.getModel();
+        ResultSet set = model.getAllQuotes();
+        table.getItems().clear();
+        while (set.next()) {
+            String quote = set.getString("цитата");
+            String teacher = set.getString("преподаватель");
+            String subject = set.getString("предмет");
+            Date date = set.getDate("дата");
+            table.getItems().addAll(new Quote(quote, teacher, subject, date));
         }
         quote.setCellValueFactory(new PropertyValueFactory<>("Quote"));
         teacher.setCellValueFactory(new PropertyValueFactory<>("Teacher"));

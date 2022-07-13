@@ -1,13 +1,11 @@
 package Model;
 
-import Controller.User;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class DBLayer implements ModelLayer {
+public class DBLayer extends ModelLayer {
     private static final Connection connection = createConnection();
 
 
@@ -41,10 +39,9 @@ public class DBLayer implements ModelLayer {
 
     @Override
     public int authorizePerson(String name, String password) {
-        Connection con = createConnection();
         String selectSql = "SELECT * FROM пользователь WHERE логин = ? AND хэш_пароля = ?";
         try {
-            PreparedStatement selectPreparedStatement = con.prepareStatement(selectSql);
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
             selectPreparedStatement.setString(1, name);
             selectPreparedStatement.setString(2, String.valueOf(password.hashCode()));
             ResultSet rs = selectPreparedStatement.executeQuery();
@@ -65,10 +62,10 @@ public class DBLayer implements ModelLayer {
             selectPreparedStatement.setInt(1, personID);
             ResultSet rs = selectPreparedStatement.executeQuery();
             if (rs.next()) {
-                User.id = personID;
-                User.login = rs.getString("логин");
-                User.group = rs.getInt("номер_группы");
-                User.accessLevel = rs.getInt("уровень_доступа");
+                USER.setId(personID);
+                USER.setLogin(rs.getString("логин"));
+                USER.setGroup(rs.getInt("номер_группы"));
+                USER.setAccessLevel(rs.getInt("уровень_доступа"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +78,7 @@ public class DBLayer implements ModelLayer {
                 "VALUES (?, ?, ?, ?, str_to_date(?, '%d/%m/%Y'))";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(1, User.id);
+            updatePreparedStatement.setInt(1, USER.getId());
             updatePreparedStatement.setString(2, quote);
             updatePreparedStatement.setString(3, teach);
             updatePreparedStatement.setString(4, subj);
@@ -121,6 +118,18 @@ public class DBLayer implements ModelLayer {
     }
 
     @Override
+    public ResultSet getMyQuotes() {
+        String selectSql = "SELECT цитата, преподаватель, предмет, дата FROM цитата WHERE id = ?";
+        try {
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            selectPreparedStatement.setInt(1, USER.getId());
+            return selectPreparedStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public int getAuthor(int id) {
         String selectSql = "SELECT автор FROM цитата WHERE id = ?";
 
@@ -142,7 +151,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE цитата SET цитата = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, quote);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -155,7 +164,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE цитата SET преподаватель = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, teacher);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -168,7 +177,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE цитата SET предмет = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, subject);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -181,7 +190,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE цитата SET дата = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, date);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -194,7 +203,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE пользователь SET логин = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, newLogin);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -207,7 +216,7 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE пользователь SET хэш_пароля = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setString(1, String.valueOf(newPassword.hashCode()));
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -220,9 +229,23 @@ public class DBLayer implements ModelLayer {
         String sql = "UPDATE пользователь SET номер_группы = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, User.id);
+            updatePreparedStatement.setInt(2, USER.getId());
             updatePreparedStatement.setInt(1, newGroup);
             updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ResultSet getMyData(int id) {
+        String selectSql = "SELECT логин,номер_группы,уровень_доступа FROM пользователь WHERE id = ?";
+
+        try {
+            PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
+            selectPreparedStatement.setInt(1, id);
+            return selectPreparedStatement.executeQuery();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

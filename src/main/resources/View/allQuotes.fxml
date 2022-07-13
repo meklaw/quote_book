@@ -5,22 +5,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AllQuotes">
-   <children>
-      <AnchorPane layoutY="118.0" prefHeight="282.0" prefWidth="600.0">
-         <children>
-            <TableView fx:id="table" prefHeight="282.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="quote" prefWidth="303.0" text="цитата" />
-                <TableColumn fx:id="teacher" minWidth="0.0" prefWidth="99.0" text="преподаватель" />
-                  <TableColumn fx:id="subject" prefWidth="90.0" text="предмет" />
-                  <TableColumn fx:id="date" prefWidth="107.0" text="дата" />
-              </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
-      <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" onAction="#menu" text="меню" />
-      <Button layoutX="145.0" layoutY="50.0" mnemonicParsing="false" onAction="#allQuotes" text="все записи" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.AllQuotes">
+    <AnchorPane layoutY="118.0" prefHeight="282.0" prefWidth="600.0">
+        <TableView fx:id="table" prefHeight="282.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="quote" prefWidth="303.0" text="цитата"/>
+                <TableColumn fx:id="teacher" minWidth="0.0" prefWidth="99.0" text="преподаватель"/>
+                <TableColumn fx:id="subject" prefWidth="90.0" text="предмет"/>
+                <TableColumn fx:id="date" prefWidth="107.0" text="дата"/>
+            </columns>
+        </TableView>
+    </AnchorPane>
+    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" onAction="#menu" text="меню"/>
+    <Button layoutX="145.0" layoutY="50.0" mnemonicParsing="false" onAction="#allQuotes" text="все записи"/>
+    <Button layoutX="242.0" layoutY="50.0" mnemonicParsing="false" onAction="#myQuotes" text="мои записи"/>
 </AnchorPane>

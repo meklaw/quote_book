@@ -1,17 +1,18 @@
 package Controller;
 
+import Model.ModelLayer;
 import javafx.fxml.FXML;
 
 public class Menu {
     @FXML
     public void authorize() {
-        if (User.accessLevel == 0)
+        if (ModelLayer.USER.getAccessLevel() == 0)
             Main.changeScene("/View/authorize.fxml");
     }
 
     @FXML
     public void profile() {
-        if (User.accessLevel == 0)
+        if (ModelLayer.USER.getAccessLevel() == 0)
             return;
         Main.changeScene("/View/profile.fxml");
     }
@@ -23,13 +24,13 @@ public class Menu {
 
     @FXML
     public void makeQuote() {
-        if (User.accessLevel == 0)
+        if (ModelLayer.USER.getAccessLevel() == 0)
             return;
         Main.changeScene("/View/makeQuote.fxml");
     }
     @FXML
     public void changeQuote() {
-        if (User.accessLevel == 0)
+        if (ModelLayer.USER.getAccessLevel() == 0)
             return;
         Main.changeScene("/View/changeQuote.fxml");
     }

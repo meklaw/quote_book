@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.DBLayer;
+import Model.ModelLayer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
+    private final static ModelLayer model = new DBLayer();
     private static Stage stage;
 
     public static void main(String[] args) {
@@ -32,5 +35,9 @@ public class Main extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static ModelLayer getModel() {
+        return model;
     }
 }

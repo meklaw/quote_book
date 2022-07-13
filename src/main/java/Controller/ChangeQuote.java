@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.DBLayer;
 import Model.ModelLayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -28,17 +27,21 @@ public class ChangeQuote {
 
     @FXML
     public void change() {
-        if (User.accessLevel == 0)
+        if (ModelLayer.USER.getAccessLevel() == 0)
             return;
         int index = Integer.parseInt(id.getText());
         String q = quot.getText();
         String t = teacher.getText();
         String s = subject.getText();
         String date = day.getText() + "/" + month.getText() + "/" + year.getText();
-        ModelLayer model = new DBLayer();
+        ModelLayer model = Main.getModel();
         int author = model.getAuthor(index);
         int group = model.getGroup(author);
-        if (!(User.accessLevel == 3 || author == User.id || (User.accessLevel == 2 && group == User.group)))
+        if (!(
+                ModelLayer.USER.getAccessLevel() == 3 ||
+                        (ModelLayer.USER.getAccessLevel() == 2 && group == ModelLayer.USER.getGroup()) ||
+                        author == ModelLayer.USER.getId()
+        ))
             return;
         model.changeQuote(index, q);
         model.changeTeacher(index, t);

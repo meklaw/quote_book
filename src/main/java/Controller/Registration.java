@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.DBLayer;
 import Model.ModelLayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -19,7 +18,7 @@ public class Registration {
         String log = login.getText();
         String gr = group.getText();
         String pas = password.getText();
-        ModelLayer model = new DBLayer();
+        ModelLayer model = Main.getModel();
         try {
             model.registerPerson(log, pas, Integer.parseInt(gr));
             authorize();
