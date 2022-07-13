@@ -26,45 +26,43 @@ public class AllQuotes {
 
     @FXML
     private TableColumn<Quote,String> date;
+    @FXML
+    private TableColumn<Quote,String> idColumn;
 
     @FXML
     public void allQuotes() throws SQLException {
         ModelLayer model = Main.getModel();
         ResultSet set = model.getAllQuotes();
-        table.getItems().clear();
-        while (set.next()) {
-            String quote = set.getString("цитата");
-            String teacher = set.getString("преподаватель");
-            String subject = set.getString("предмет");
-            Date date = set.getDate("дата");
-            table.getItems().addAll(new Quote(quote, teacher, subject, date));
-        }
-        quote.setCellValueFactory(new PropertyValueFactory<>("quote"));
-        teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
-        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        updateTabel(set);
     }
     @FXML
     public void myQuotes() throws SQLException {
         ModelLayer model = Main.getModel();
-        ResultSet set = model.getAllQuotes();
-        table.getItems().clear();
-        while (set.next()) {
-            String quote = set.getString("цитата");
-            String teacher = set.getString("преподаватель");
-            String subject = set.getString("предмет");
-            Date date = set.getDate("дата");
-            table.getItems().addAll(new Quote(quote, teacher, subject, date));
-        }
-        quote.setCellValueFactory(new PropertyValueFactory<>("Quote"));
-        teacher.setCellValueFactory(new PropertyValueFactory<>("Teacher"));
-        subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
-        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        ResultSet set = model.getMyQuotes();
+        updateTabel(set);
     }
 
 
     @FXML
     public void menu() {
         Main.changeScene("/View/menu.fxml");
+    }
+
+    private void updateTabel(ResultSet set) throws SQLException {
+        table.getItems().clear();
+        while (set.next()) {
+            String quote = set.getString("цитата");
+            String teacher = set.getString("преподаватель");
+            String subject = set.getString("предмет");
+            Date date = set.getDate("дата");
+            int idQo = set.getInt("id");
+            table.getItems().addAll(new Quote(quote, teacher, subject, date, idQo));
+        }
+        quote.setCellValueFactory(new PropertyValueFactory<>("Quote"));
+        teacher.setCellValueFactory(new PropertyValueFactory<>("Teacher"));
+        subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
+        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
     }
 }

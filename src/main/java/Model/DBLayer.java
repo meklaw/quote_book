@@ -82,7 +82,7 @@ public class DBLayer extends ModelLayer {
             updatePreparedStatement.setString(2, quote);
             updatePreparedStatement.setString(3, teach);
             updatePreparedStatement.setString(4, subj);
-            updatePreparedStatement.setString(4, date);
+            updatePreparedStatement.setString(5, date);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -108,7 +108,7 @@ public class DBLayer extends ModelLayer {
 
     @Override
     public ResultSet getAllQuotes() {
-        String selectSql = "SELECT цитата, преподаватель, предмет, дата FROM цитата";
+        String selectSql = "SELECT id, цитата, преподаватель, предмет, дата FROM цитата";
         try {
             PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
             return selectPreparedStatement.executeQuery();
@@ -119,7 +119,7 @@ public class DBLayer extends ModelLayer {
 
     @Override
     public ResultSet getMyQuotes() {
-        String selectSql = "SELECT цитата, преподаватель, предмет, дата FROM цитата WHERE id = ?";
+        String selectSql = "SELECT id, цитата, преподаватель, предмет, дата FROM цитата WHERE автор = ?";
         try {
             PreparedStatement selectPreparedStatement = connection.prepareStatement(selectSql);
             selectPreparedStatement.setInt(1, USER.getId());
@@ -151,7 +151,7 @@ public class DBLayer extends ModelLayer {
         String sql = "UPDATE цитата SET цитата = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, USER.getId());
+            updatePreparedStatement.setInt(2, id);
             updatePreparedStatement.setString(1, quote);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -164,7 +164,7 @@ public class DBLayer extends ModelLayer {
         String sql = "UPDATE цитата SET преподаватель = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, USER.getId());
+            updatePreparedStatement.setInt(2, id);
             updatePreparedStatement.setString(1, teacher);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -177,7 +177,7 @@ public class DBLayer extends ModelLayer {
         String sql = "UPDATE цитата SET предмет = ? WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, USER.getId());
+            updatePreparedStatement.setInt(2, id);
             updatePreparedStatement.setString(1, subject);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -187,10 +187,10 @@ public class DBLayer extends ModelLayer {
 
     @Override
     public void changeDate(int id, String date) {
-        String sql = "UPDATE цитата SET дата = ? WHERE id = ?;";
+        String sql = "UPDATE цитата SET дата = str_to_date(?, '%d/%m/%Y')  WHERE id = ?;";
         try {
             PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
-            updatePreparedStatement.setInt(2, USER.getId());
+            updatePreparedStatement.setInt(2, id);
             updatePreparedStatement.setString(1, date);
             updatePreparedStatement.executeUpdate();
         } catch (SQLException e) {
