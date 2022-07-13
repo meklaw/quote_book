@@ -14,6 +14,7 @@ public abstract class ModelLayer {
     public abstract void updateUser(int personID);
 
     public abstract void createQuote(String quote, String teach, String subj, String date);
+    public abstract void deleteQuote(int id);
 
     public abstract int getGroup(int id);
 

@@ -15,4 +15,5 @@
     <TextField fx:id="month" layoutX="272.0" layoutY="211.0" promptText="месяц" />
     <TextField fx:id="year" layoutX="272.0" layoutY="262.0" promptText="год" />
    <TextField fx:id="id" layoutX="166.0" layoutY="117.0" promptText="id записи" />
+   <Button layoutX="387.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" text="удалить" />
 </AnchorPane>

@@ -90,6 +90,19 @@ public class DBLayer extends ModelLayer {
     }
 
     @Override
+    public void deleteQuote(int id) {
+        String sql = "DELETE FROM цитата WHERE id = ?";
+        try {
+            PreparedStatement updatePreparedStatement = connection.prepareStatement(sql);
+            updatePreparedStatement.setInt(1, id);
+            updatePreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
     public int getGroup(int id) {
         String selectSql = "SELECT номер_группы FROM пользователь WHERE id = ?";
 

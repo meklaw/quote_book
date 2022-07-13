@@ -48,4 +48,20 @@ public class ChangeQuote {
         model.changeSubject(index, s);
         model.changeDate(index, date);
     }
+    @FXML
+    public void delete() {
+        if (ModelLayer.USER.getAccessLevel() == 0)
+            return;
+        int index = Integer.parseInt(id.getText());
+        ModelLayer model = Main.getModel();
+        int author = model.getAuthor(index);
+        int group = model.getGroup(author);
+        if (!(
+                ModelLayer.USER.getAccessLevel() == 3 ||
+                        (ModelLayer.USER.getAccessLevel() == 2 && group == ModelLayer.USER.getGroup()) ||
+                        author == ModelLayer.USER.getId()
+        ))
+            return;
+        model.deleteQuote(index);
+    }
 }
