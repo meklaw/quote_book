@@ -8,12 +8,12 @@
 
     <Button layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#menu" text="menu" />
     <Button layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#change" text="изменить" />
-    <TextField fx:id="quot" layoutX="62.0" layoutY="165.0" promptText="Цитата" />
-    <TextField fx:id="subject" layoutX="62.0" layoutY="262.0" promptText="Предмет" />
-    <TextField fx:id="teacher" layoutX="62.0" layoutY="211.0" promptText="Преподаватель" />
-    <TextField fx:id="day" layoutX="272.0" layoutY="165.0" promptText="день" />
-    <TextField fx:id="month" layoutX="272.0" layoutY="211.0" promptText="месяц" />
-    <TextField fx:id="year" layoutX="272.0" layoutY="262.0" promptText="год" />
-   <TextField fx:id="id" layoutX="166.0" layoutY="117.0" promptText="id записи" />
+    <TextField fx:id="quotField" layoutX="62.0" layoutY="165.0" promptText="Цитата" />
+    <TextField fx:id="subjectField" layoutX="62.0" layoutY="262.0" promptText="Предмет" />
+    <TextField fx:id="teacherNameField" layoutX="62.0" layoutY="211.0" promptText="Преподаватель" />
+    <TextField fx:id="dayQuotField" layoutX="272.0" layoutY="165.0" promptText="день" />
+    <TextField fx:id="monthQuotField" layoutX="272.0" layoutY="211.0" promptText="месяц" />
+    <TextField fx:id="yearQuotField" layoutX="272.0" layoutY="262.0" promptText="год" />
+   <TextField fx:id="idQuotField" layoutX="166.0" layoutY="117.0" promptText="id записи" />
    <Button layoutX="387.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" text="удалить" />
 </AnchorPane>

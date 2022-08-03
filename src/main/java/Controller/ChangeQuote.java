@@ -6,19 +6,19 @@ import javafx.scene.control.TextField;
 
 public class ChangeQuote {
     @FXML
-    private TextField quot;
+    private TextField quotField;
     @FXML
-    private TextField subject;
+    private TextField subjectField;
     @FXML
-    private TextField teacher;
+    private TextField teacherNameField;
     @FXML
-    private TextField day;
+    private TextField dayQuotField;
     @FXML
-    private TextField month;
+    private TextField monthQuotField;
     @FXML
-    private TextField year;
+    private TextField yearQuotField;
     @FXML
-    private TextField id;
+    private TextField idQuotField;
 
     @FXML
     public void menu() {
@@ -29,39 +29,39 @@ public class ChangeQuote {
     public void change() {
         if (ModelLayer.USER.getAccessLevel() == 0)
             return;
-        int index = Integer.parseInt(id.getText());
-        String q = quot.getText();
-        String t = teacher.getText();
-        String s = subject.getText();
-        String date = day.getText() + "/" + month.getText() + "/" + year.getText();
+        int idQuot = Integer.parseInt(idQuotField.getText());
+        String quot = quotField.getText();
+        String teacherName = teacherNameField.getText();
+        String subject = subjectField.getText();
+        String date = dayQuotField.getText() + "/" + monthQuotField.getText() + "/" + yearQuotField.getText();
         ModelLayer model = Main.getModel();
-        int author = model.getAuthor(index);
-        int group = model.getGroup(author);
+        int authorQuot = model.getAuthor(idQuot);
+        int groupNumber = model.getGroup(authorQuot);
         if (!(
                 ModelLayer.USER.getAccessLevel() == 3 ||
-                        (ModelLayer.USER.getAccessLevel() == 2 && group == ModelLayer.USER.getGroup()) ||
-                        author == ModelLayer.USER.getId()
+                        (ModelLayer.USER.getAccessLevel() == 2 && groupNumber == ModelLayer.USER.getGroup()) ||
+                        authorQuot == ModelLayer.USER.getId()
         ))
             return;
-        model.changeQuote(index, q);
-        model.changeTeacher(index, t);
-        model.changeSubject(index, s);
-        model.changeDate(index, date);
+        model.changeQuote(idQuot, quot);
+        model.changeTeacher(idQuot, teacherName);
+        model.changeSubject(idQuot, subject);
+        model.changeDate(idQuot, date);
     }
     @FXML
     public void delete() {
         if (ModelLayer.USER.getAccessLevel() == 0)
             return;
-        int index = Integer.parseInt(id.getText());
+        int idQuot = Integer.parseInt(idQuotField.getText());
         ModelLayer model = Main.getModel();
-        int author = model.getAuthor(index);
-        int group = model.getGroup(author);
+        int authorQuot = model.getAuthor(idQuot);
+        int groupNumber = model.getGroup(authorQuot);
         if (!(
                 ModelLayer.USER.getAccessLevel() == 3 ||
-                        (ModelLayer.USER.getAccessLevel() == 2 && group == ModelLayer.USER.getGroup()) ||
-                        author == ModelLayer.USER.getId()
+                        (ModelLayer.USER.getAccessLevel() == 2 && groupNumber == ModelLayer.USER.getGroup()) ||
+                        authorQuot == ModelLayer.USER.getId()
         ))
             return;
-        model.deleteQuote(index);
+        model.deleteQuote(idQuot);
     }
 }
