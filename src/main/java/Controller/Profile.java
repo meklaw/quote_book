@@ -24,11 +24,11 @@ public class Profile {
     @FXML
     private TableColumn<User,String> accessColumn;
     @FXML
-    private TextField login;
+    private TextField userLoginField;
     @FXML
-    private TextField group;
+    private TextField userGroupField;
     @FXML
-    private TextField password;
+    private TextField userPasswordField;
 
     @FXML
     public void menu() {
@@ -37,9 +37,9 @@ public class Profile {
 
     @FXML
     public void change() {
-        String log = login.getText();
-        int g = Integer.parseInt(group.getText());
-        String pas = password.getText();
+        String log = userLoginField.getText();
+        int g = Integer.parseInt(userGroupField.getText());
+        String pas = userPasswordField.getText();
         ModelLayer model = Main.getModel();
         model.changeUserGroup(ModelLayer.USER.getId(), g);
         model.changeUserLogin(ModelLayer.USER.getId(), log);
@@ -52,10 +52,10 @@ public class Profile {
         ResultSet set = model.getMyData(ModelLayer.USER.getId());
         table.getItems().clear();
         if (set.next()) {
-            String l = set.getString("логин");
-            int g = set.getInt("номер_группы");
-            int a = set.getInt("уровень_доступа");
-            table.getItems().addAll(new User(ModelLayer.USER.getId(), l,g,a));
+            String userLogin = set.getString("логин");
+            int userGroup = set.getInt("номер_группы");
+            int userAccessLevel = set.getInt("уровень_доступа");
+            table.getItems().addAll(new User(ModelLayer.USER.getId(), userLogin,userGroup,userAccessLevel));
         }
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         groupColumn.setCellValueFactory(new PropertyValueFactory<>("group"));
