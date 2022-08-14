@@ -6,36 +6,36 @@ import javafx.scene.control.TextField;
 
 public class MakeQuote {
     @FXML
-    private TextField quot;
+    private TextField quotField;
     @FXML
-    private TextField subject;
+    private TextField subjectField;
     @FXML
-    private TextField teacher;
+    private TextField teacherField;
     @FXML
-    private TextField day;
+    private TextField dayField;
     @FXML
-    private TextField month;
+    private TextField monthField;
     @FXML
-    private TextField year;
+    private TextField yearField;
 
 
     @FXML
-    public void menu() {
+    public void changeSceneToMenu() {
         Main.changeScene("/View/menu.fxml");
     }
 
     @FXML
-    public void write() {
+    public void makeQuote() {
         if (ModelLayer.USER.getAccessLevel() == 0)
             return;
 
-        String q = quot.getText();
-        String t = teacher.getText();
-        String s = subject.getText();
-        String date = day.getText()+"/"+month.getText()+"/"+year.getText();
+        String quot = quotField.getText();
+        String teacher = teacherField.getText();
+        String subject = subjectField.getText();
+        String date = dayField.getText()+"/"+ monthField.getText()+"/"+ yearField.getText();
         ModelLayer model = Main.getModel();
         try {
-            model.createQuote(q,t,s,date);
+            model.createQuote(quot,teacher,subject,date);
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }

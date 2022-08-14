@@ -10,11 +10,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controller.Profile">
-    <Button layoutX="52.0" layoutY="77.0" mnemonicParsing="false" onAction="#menu" text="меню"/>
+    <Button layoutX="52.0" layoutY="77.0" mnemonicParsing="false" onAction="#changeSceneToMenu" text="меню"/>
     <TextField fx:id="userPasswordField" layoutX="61.0" layoutY="160.0" promptText="новый пароль"/>
     <TextField fx:id="userLoginField" layoutX="243.0" layoutY="160.0" promptText="новый логин"/>
     <TextField fx:id="userGroupField" layoutX="411.0" layoutY="160.0" promptText="новая группа"/>
-    <Button layoutX="162.0" layoutY="77.0" mnemonicParsing="false" onAction="#change" text="сменить"/>
+    <Button layoutX="162.0" layoutY="77.0" mnemonicParsing="false" onAction="#changeUserData" text="сменить"/>
     <TableView fx:id="table" layoutX="61.0" layoutY="253.0" prefHeight="80.0" prefWidth="455.0">
       <columns>
           <TableColumn fx:id="loginColumn" prefWidth="201.0" text="логин"/>
@@ -32,5 +32,5 @@
           <Font size="18.0"/>
         </font>
     </Text>
-    <Button layoutX="238.0" layoutY="205.0" mnemonicParsing="false" onAction="#showMyData" text="показать мои данные"/>
+    <Button layoutX="238.0" layoutY="205.0" mnemonicParsing="false" onAction="#showUserData" text="показать мои данные"/>
 </AnchorPane>

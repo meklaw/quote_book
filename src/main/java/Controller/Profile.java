@@ -31,12 +31,12 @@ public class Profile {
     private TextField userPasswordField;
 
     @FXML
-    public void menu() {
+    public void changeSceneToMenu() {
         Main.changeScene("/View/menu.fxml");
     }
 
     @FXML
-    public void change() {
+    public void changeUserData() {
         String log = userLoginField.getText();
         int g = Integer.parseInt(userGroupField.getText());
         String pas = userPasswordField.getText();
@@ -47,7 +47,7 @@ public class Profile {
         Main.changeScene("/View/menu.fxml");
     }
     @FXML
-    public void showMyData() throws SQLException {
+    public void showUserData() throws SQLException {
         ModelLayer model = Main.getModel();
         ResultSet set = model.getMyData(ModelLayer.USER.getId());
         table.getItems().clear();
