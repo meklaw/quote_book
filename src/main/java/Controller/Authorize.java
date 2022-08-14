@@ -29,12 +29,12 @@ public class Authorize {
     }
 
     @FXML
-    public void signUp() {
+    public void changeSceneToRegistration() {
         Main.changeScene("/View/registration.fxml");
     }
 
     @FXML
-    public void menu() {
+    public void changeSceneToMenu() {
         Main.changeScene("/View/menu.fxml");
     }
 }

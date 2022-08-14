@@ -16,6 +16,6 @@
          <Font size="18.0" />
       </font>
    </Text>
-   <Button layoutX="282.0" layoutY="280.0" mnemonicParsing="false" onAction="#signUp" text="Регистрация" />
-   <Button layoutX="300.0" layoutY="323.0" mnemonicParsing="false" onAction="#menu" text="Меню" />
+   <Button layoutX="282.0" layoutY="280.0" mnemonicParsing="false" onAction="#changeSceneToRegistration" text="Регистрация" />
+   <Button layoutX="300.0" layoutY="323.0" mnemonicParsing="false" onAction="#changeSceneToMenu" text="Меню" />
 </AnchorPane>
