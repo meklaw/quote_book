@@ -30,13 +30,13 @@ public class AllQuotes {
     private TableColumn<Quote,String> idColumn;
 
     @FXML
-    public void allQuotes() throws SQLException {
+    public void showAllQuotes() throws SQLException {
         ModelLayer model = Main.getModel();
         ResultSet set = model.getAllQuotes();
         updateTabel(set);
     }
     @FXML
-    public void myQuotes() throws SQLException {
+    public void showUserQuotes() throws SQLException {
         ModelLayer model = Main.getModel();
         ResultSet set = model.getMyQuotes();
         updateTabel(set);
@@ -44,7 +44,7 @@ public class AllQuotes {
 
 
     @FXML
-    public void menu() {
+    public void changeSceneToMenu() {
         Main.changeScene("/View/menu.fxml");
     }
 

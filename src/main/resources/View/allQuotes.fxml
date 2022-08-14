@@ -17,7 +17,7 @@
             </columns>
         </TableView>
     </AnchorPane>
-    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" onAction="#menu" text="меню" />
-    <Button layoutX="145.0" layoutY="50.0" mnemonicParsing="false" onAction="#allQuotes" text="все записи" />
-    <Button layoutX="242.0" layoutY="50.0" mnemonicParsing="false" onAction="#myQuotes" text="мои записи" />
+    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeSceneToMenu" text="меню" />
+    <Button layoutX="145.0" layoutY="50.0" mnemonicParsing="false" onAction="#showAllQuotes" text="все записи" />
+    <Button layoutX="242.0" layoutY="50.0" mnemonicParsing="false" onAction="#showUserQuotes" text="мои записи" />
 </AnchorPane>
