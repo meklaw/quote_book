@@ -27,7 +27,7 @@ public class ChangeQuote {
 
     @FXML
     public void change() {
-        if (ModelLayer.USER.getAccessLevel() == 0)
+        if (ModelLayer.USER_ACCOUNT.getAccessLevel() == 0)
             return;
         int idQuot = Integer.parseInt(idQuotField.getText());
         String quot = quotField.getText();
@@ -38,9 +38,9 @@ public class ChangeQuote {
         int authorQuot = model.getAuthor(idQuot);
         int groupNumber = model.getGroup(authorQuot);
         if (!(
-                ModelLayer.USER.getAccessLevel() == 3 ||
-                        (ModelLayer.USER.getAccessLevel() == 2 && groupNumber == ModelLayer.USER.getGroup()) ||
-                        authorQuot == ModelLayer.USER.getId()
+                ModelLayer.USER_ACCOUNT.getAccessLevel() == 3 ||
+                        (ModelLayer.USER_ACCOUNT.getAccessLevel() == 2 && groupNumber == ModelLayer.USER_ACCOUNT.getGroup()) ||
+                        authorQuot == ModelLayer.USER_ACCOUNT.getId()
         ))
             return;
         model.changeQuote(idQuot, quot);
@@ -50,16 +50,16 @@ public class ChangeQuote {
     }
     @FXML
     public void delete() {
-        if (ModelLayer.USER.getAccessLevel() == 0)
+        if (ModelLayer.USER_ACCOUNT.getAccessLevel() == 0)
             return;
         int idQuot = Integer.parseInt(idQuotField.getText());
         ModelLayer model = Main.getModel();
         int authorQuot = model.getAuthor(idQuot);
         int groupNumber = model.getGroup(authorQuot);
         if (!(
-                ModelLayer.USER.getAccessLevel() == 3 ||
-                        (ModelLayer.USER.getAccessLevel() == 2 && groupNumber == ModelLayer.USER.getGroup()) ||
-                        authorQuot == ModelLayer.USER.getId()
+                ModelLayer.USER_ACCOUNT.getAccessLevel() == 3 ||
+                        (ModelLayer.USER_ACCOUNT.getAccessLevel() == 2 && groupNumber == ModelLayer.USER_ACCOUNT.getGroup()) ||
+                        authorQuot == ModelLayer.USER_ACCOUNT.getId()
         ))
             return;
         model.deleteQuote(idQuot);

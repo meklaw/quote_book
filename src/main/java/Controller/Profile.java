@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.ModelLayer;
-import Model.User;
+import Model.UserAccount;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,16 +13,16 @@ import java.sql.SQLException;
 
 public class Profile {
     @FXML
-    private TableView<User> table;
+    private TableView<UserAccount> table;
 
     @FXML
-    private TableColumn<User,String> loginColumn;
+    private TableColumn<UserAccount,String> loginColumn;
 
     @FXML
-    private TableColumn<User,String> groupColumn;
+    private TableColumn<UserAccount,String> groupColumn;
 
     @FXML
-    private TableColumn<User,String> accessColumn;
+    private TableColumn<UserAccount,String> accessColumn;
     @FXML
     private TextField userLoginField;
     @FXML
@@ -41,21 +41,21 @@ public class Profile {
         int g = Integer.parseInt(userGroupField.getText());
         String pas = userPasswordField.getText();
         ModelLayer model = Main.getModel();
-        model.changeUserGroup(ModelLayer.USER.getId(), g);
-        model.changeUserLogin(ModelLayer.USER.getId(), log);
-        model.changeUserPassword(ModelLayer.USER.getId(), pas);
+        model.changeUserGroup(ModelLayer.USER_ACCOUNT.getId(), g);
+        model.changeUserLogin(ModelLayer.USER_ACCOUNT.getId(), log);
+        model.changeUserPassword(ModelLayer.USER_ACCOUNT.getId(), pas);
         Main.changeScene("/View/menu.fxml");
     }
     @FXML
     public void showUserData() throws SQLException {
         ModelLayer model = Main.getModel();
-        ResultSet set = model.getMyData(ModelLayer.USER.getId());
+        ResultSet set = model.getMyData(ModelLayer.USER_ACCOUNT.getId());
         table.getItems().clear();
         if (set.next()) {
             String userLogin = set.getString("логин");
             int userGroup = set.getInt("номер_группы");
             int userAccessLevel = set.getInt("уровень_доступа");
-            table.getItems().addAll(new User(ModelLayer.USER.getId(), userLogin,userGroup,userAccessLevel));
+            table.getItems().addAll(new UserAccount(ModelLayer.USER_ACCOUNT.getId(), userLogin,userGroup,userAccessLevel));
         }
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         groupColumn.setCellValueFactory(new PropertyValueFactory<>("group"));

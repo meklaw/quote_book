@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 public abstract class ModelLayer {
 
-    public final static User USER = new User();
+    public final static UserAccount USER_ACCOUNT = new UserAccount();
 
     public abstract void registerPerson(String login, String password, int group);
 

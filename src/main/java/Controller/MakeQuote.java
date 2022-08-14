@@ -26,7 +26,7 @@ public class MakeQuote {
 
     @FXML
     public void makeQuote() {
-        if (ModelLayer.USER.getAccessLevel() == 0)
+        if (ModelLayer.USER_ACCOUNT.getAccessLevel() == 0)
             return;
 
         String quot = quotField.getText();

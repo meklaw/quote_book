@@ -1,6 +1,6 @@
 package Model;
 
-public class User {
+public class UserAccount {
     private int id;
     private String login;
     private int group;
@@ -21,10 +21,10 @@ public class User {
                 "accessLevel:" + accessLevel;
     }
 
-    public User() {
+    public UserAccount() {
     }
 
-    public User(int id, String login, int group, int accessLevel) {
+    public UserAccount(int id, String login, int group, int accessLevel) {
         this.id = id;
         this.login = login;
         this.group = group;

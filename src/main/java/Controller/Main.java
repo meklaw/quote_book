@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.DBLayer;
+import Model.DataBaseLayer;
 import Model.ModelLayer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
-    private final static ModelLayer model = new DBLayer();
+    private final static ModelLayer model = new DataBaseLayer();
     private static Stage stage;
 
     public static void main(String[] args) {
