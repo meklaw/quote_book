@@ -7,33 +7,33 @@ import javafx.scene.control.TextField;
 
 public class Registration {
     @FXML
-    private TextField login;
+    private TextField loginField;
     @FXML
-    private TextField group;
+    private TextField groupField;
     @FXML
-    private PasswordField password;
+    private PasswordField passwordField;
 
     @FXML
-    public void registration() {
-        String log = login.getText();
-        String gr = group.getText();
-        String pas = password.getText();
+    public void registerAccount() {
+        String login = loginField.getText();
+        String group = groupField.getText();
+        String password = passwordField.getText();
         ModelLayer model = Main.getModel();
         try {
-            model.registerPerson(log, pas, Integer.parseInt(gr));
-            authorize();
+            model.registerPerson(login, password, Integer.parseInt(group));
+            changeSceneToAuthorize();
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    public void authorize() {
+    public void changeSceneToAuthorize() {
         Main.changeScene("/View/authorize.fxml");
     }
 
     @FXML
-    public void menu() {
+    public void changeSceneToMenu() {
         Main.changeScene("/View/menu.fxml");
     }
 

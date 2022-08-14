@@ -15,10 +15,10 @@
          <Font size="18.0"/>
       </font>
    </Text>
-   <TextField fx:id="login" layoutX="51.0" layoutY="154.0" promptText="логин"/>
-   <TextField fx:id="group" layoutX="51.0" layoutY="290.0" promptText="номер группы"/>
-   <PasswordField fx:id="password" layoutX="51.0" layoutY="221.0" promptText="пароль"/>
-   <Button layoutX="370.0" layoutY="154.0" mnemonicParsing="false" onAction="#registration" text="Зарегистрироваться"/>
-   <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#authorize" text="Авторизация"/>
-   <Button layoutX="409.0" layoutY="290.0" mnemonicParsing="false" onAction="#menu" text="Меню"/>
+   <TextField fx:id="loginField" layoutX="51.0" layoutY="154.0" promptText="логин"/>
+   <TextField fx:id="groupField" layoutX="51.0" layoutY="290.0" promptText="номер группы"/>
+   <PasswordField fx:id="passwordField" layoutX="51.0" layoutY="221.0" promptText="пароль"/>
+   <Button layoutX="370.0" layoutY="154.0" mnemonicParsing="false" onAction="#registerAccount" text="Зарегистрироваться"/>
+   <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#changeSceneToAuthorize" text="Авторизация"/>
+   <Button layoutX="409.0" layoutY="290.0" mnemonicParsing="false" onAction="#changeSceneToMenu" text="Меню"/>
 </AnchorPane>
